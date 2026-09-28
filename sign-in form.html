@@ -1,0 +1,487 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign-in Form</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* main page */
+
+        .page {
+            width: 100%;
+            min-height: 120vh;
+            position: relative;
+            background-image:
+                linear-gradient(
+                    90deg,
+                    rgba(255, 94, 94, 0.45) 0%,
+                    rgba(255, 94, 94, 0.45) 50%,
+                    rgba(22, 22, 24, 0.70) 50%,
+                    rgba(22, 22, 24, 0.70) 100%
+                ),
+                url("media/valorant-bg.png");
+
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 12%;
+            padding-bottom: 230px;
+            overflow: hidden;
+        }
+
+        .page::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.10);
+            pointer-events: none;
+        }
+
+        /* left side */
+
+        .left,
+        .login-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        .left {
+            height: 80%;
+            position: relative;
+            transform: translateY(-80px);
+        }
+
+        .left h1 {
+            color: white;
+            font-size: 50px;
+            margin-top: 0;
+            font-weight: bold;
+        }
+
+        /* social media buttons */
+
+        .social {
+            background-color: white;
+            width: 40px;
+            height: 230px;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            position: absolute;
+            left: 0;
+            top: 70px;
+        }
+
+        .social a {
+            color: black;
+            font-size: 20px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .social a:hover {
+            color: #ff4655;
+            transform: scale(1.2);
+        }
+
+        /* sign in box */
+
+        .login-box {
+            width: 320px;
+            height: 445px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 35px;
+            position: relative;
+            z-index: 3;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-box h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-top: 0;
+            margin-bottom: 45px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .input-with-icon {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .input-with-icon .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .input-with-icon input {
+            width: 100%;
+            height: 46px;
+            border: 1px solid #eeeeee;
+            border-radius: 10px;
+            padding: 10px 12px 10px 42px;
+            box-shadow: 0 2px 5px #ddd;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .input-with-icon input::placeholder {
+            color: #888;
+        }
+
+        /* remember user */
+
+        .remember {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .remember input {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+        }
+
+        .remember label {
+            font-size: 14px;
+        }
+
+        /* enter button */
+
+        .enter {
+            display: block;
+            width: 150px;
+            height: 40px;
+            margin: auto;
+            border: none;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 3px 10px #ddd;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .enter:hover {
+            background-color: #eeeeee;
+        }
+
+        .login-box a {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* footer */
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            min-height: 230px;
+            background-color: rgba(70, 12, 18, 0.97);
+            color: white;
+            display: flex;
+            align-items: flex-start;
+            padding: 55px 5% 45px 5%;
+            z-index: 2;
+            border-top: 3px solid #ff4655;
+        }
+
+        /* footer about section */
+
+        .footer-about {
+            width: 30%;
+            padding-right: 45px;
+            border-right: 1px solid rgba(255, 70, 85, 0.25);
+            min-height: 145px;
+        }
+
+        .footer-about h2 {
+            margin: 0 0 15px 0;
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .footer-about p {
+            margin: 0;
+            line-height: 1.6;
+            font-size: 14px;
+            color: #f0cdd0;
+            max-width: 270px;
+        }
+
+        /* footer social media */
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .footer-social a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: #ff4655;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 19px;
+            transition: 0.2s;
+        }
+
+        .footer-social a:hover {
+            background-color: white;
+            color: #ff4655;
+            transform: scale(1.1);
+        }
+
+        /* footer columns */
+
+        .footer-column {
+            flex: 1;
+            min-height: 145px;
+            padding-left: 40px;
+            border-right: 1px solid rgba(255, 70, 85, 0.25);
+        }
+
+        .footer-column:last-child {
+            border-right: none;
+        }
+
+        .footer-column h3 {
+            margin: 0 0 22px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .footer-column a {
+            display: block;
+            margin-bottom: 17px;
+            color: #e9aeb3;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: #ff4655;
+        }
+
+        /* copyright */
+
+        .copyright {
+            position: absolute;
+            bottom: 12px;
+            left: 5%;
+            font-size: 11px;
+            color: #c98b91;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="page">
+        <div class="left">
+            <h1>VALORANT</h1>
+            <!-- social media buttons -->
+            <div class="social">
+
+                <a href="https://www.facebook.com/" target="_blank">
+                    <i class="bi bi-facebook"></i>
+                </a>
+
+                <a href="https://www.instagram.com/" target="_blank">
+                    <i class="bi bi-instagram"></i>
+                </a>
+
+                <a href="https://twitter.com/" target="_blank">
+                    <i class="bi bi-twitter"></i>
+                </a>
+
+                <a href="https://www.twitch.tv/" target="_blank">
+                    <i class="bi bi-twitch"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- sign in box -->
+        <div class="login-box">
+            <h2>SIGN IN</h2>
+            <form>
+
+                <!-- username -->
+
+                <div class="input-with-icon">
+                    <span class="input-icon">
+                        <i class="bi bi-person"></i>
+                    </span>
+                    <input type="text" placeholder="Username">
+                </div>
+
+                <!-- password -->
+
+                <div class="input-with-icon">
+                    <span class="input-icon">
+                        <i class="bi bi-lock"></i>
+                    </span>
+                    <input type="password" placeholder="Password">
+                </div>
+
+                <!-- remember user -->
+
+                <div class="remember">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">
+                        Remember user
+                    </label>
+                </div>
+
+                <!-- enter button -->
+
+                <button class="enter">
+                    Enter
+                </button>
+
+                <!-- forgot password -->
+
+                <a href="#">
+                    Forget password?
+                </a>
+
+            </form>
+        </div>
+
+        <!-- footer -->
+
+        <footer class="footer">
+
+            <!-- footer about section -->
+
+            <div class="footer-about">
+                <h2>VALORANT.</h2>
+                <p>
+                    Follow VALORANT for updates, news,
+                    support and more information about the game.
+                </p>
+
+                <!-- footer social media -->
+
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/" target="_blank">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/" target="_blank">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="https://twitter.com/" target="_blank">
+                        <i class="bi bi-twitter"></i>
+                    </a>
+
+                    <a href="https://www.twitch.tv/" target="_blank">
+                        <i class="bi bi-twitch"></i>
+                    </a>
+
+                    <a href="https://www.youtube.com/" target="_blank">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- company -->
+
+            <div class="footer-column">
+                <h3>Company</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">News</a>
+                    <a href="#">Contact</a>
+            </div>
+
+            <!-- legal -->
+
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Security</a>
+            </div>
+
+            <!-- technical -->
+
+            <div class="footer-column">
+                <h3>Technical</h3>
+                <a href="#">Status</a>
+                <a href="#">Release Notes</a>
+                <a href="#">Support</a>
+            </div>
+
+            <!-- more stuff -->
+
+            <div class="footer-column">
+                <h3>More Stuff</h3>
+                <a href="#">Community</a>
+                <a href="#">Events</a>
+            </div>
+
+            <!-- copyright -->
+
+            <div class="copyright">
+                © 2026 VALORANT. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+
+</html>
